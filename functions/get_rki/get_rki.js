@@ -21,7 +21,7 @@ const getData = async () => {
   const tableBody = table.querySelector('tbody');
   const columns = tableBody.querySelectorAll('tr');
   const data = [
-    ['Bundesland', 'Erkrankte', 'Dif­fe­renz zum Vor­tag', 'Fälle pro 100.000 Einw.', 'Todes­fälle', 'Beson­ders be­trof­fene Gebiete']
+    ['Bundesland', 'Erkrankte', 'Dif­fe­renz zum Vor­tag', 'Erkrankte pro 100.000 Einw.', 'Todes­fälle', 'Beson­ders be­trof­fene Gebiete']
   ];
   for (const col of columns) {
     const rows = Array.from(col.querySelectorAll('td'));
@@ -37,7 +37,8 @@ exports.handler = async () => {
   return {
     statusCode: 200,
     headers: {
-      "content-type": "text/plain; charset=utf-8"
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "max-age=3600"
     },
     body: stringify(checkData, {
       header: false
