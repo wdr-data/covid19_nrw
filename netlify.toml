@@ -1,4 +1,5 @@
 [build]
 
+environment = {AWS_LAMBDA_JS_RUNTIME="nodejs10.x"}
 functions = "functions"
 command = "yarn --cwd functions/get_nrw && yarn --cwd functions/get_rki"
