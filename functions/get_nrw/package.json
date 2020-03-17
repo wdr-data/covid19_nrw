@@ -8,5 +8,8 @@
     "csv-stringify": "^5.3.6",
     "jsdom": "^16.2.1",
     "node-fetch": "^2.6.0"
+  },
+  "scripts": {
+    "postinstall": "npm rebuild"
   }
 }

@@ -1,4 +1,4 @@
 [build]
 
 functions = "functions"
-command = "yarn --cwd functions/get_nrw"
+command = "yarn --cwd functions/get_nrw && yarn --cwd functions/get_rki"
