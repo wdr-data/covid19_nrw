@@ -1,0 +1,4 @@
+[build]
+
+functions = "lambda"
+command = "netlify-lambda build functions --config webpack.functions.js"
