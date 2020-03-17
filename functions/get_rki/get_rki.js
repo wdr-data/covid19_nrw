@@ -20,7 +20,9 @@ const getData = async () => {
   const table = tables[0];
   const tableBody = table.querySelector('tbody');
   const columns = tableBody.querySelectorAll('tr');
-  const data = [];
+  const data = [
+    ['Bundesland', 'Erkrankte', 'Dif­fe­renz zum Vor­tag', 'Fälle pro 100.000 Einw.', 'Todes­fälle', 'Beson­ders be­trof­fene Gebiete']
+  ];
   for (const col of columns) {
     const rows = Array.from(col.querySelectorAll('td'));
     data.push(rows.map(row => row.textContent))
