@@ -1,4 +1,4 @@
 [build]
 
-functions = "lambda"
-command = "netlify-lambda build functions --config webpack.functions.js"
+functions = "functions"
+command = "yarn --cwd functions/get_nrw"

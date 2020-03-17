@@ -1,0 +1,12 @@
+{
+  "name": "get_nrw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "csv-stringify": "^5.3.6",
+    "jsdom": "^16.2.1",
+    "node-fetch": "^2.6.0"
+  }
+}
