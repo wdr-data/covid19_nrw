@@ -28,8 +28,9 @@ const getData = async () => {
     const rows = Array.from(col.querySelectorAll('td'));
     data.push(rows.map(row => row.textContent
       .replace('(Kreis)', '')
-      .replace(' & Städteregion Aachen', '')
+      .replace('Aachen & ', '')
       .replace('.', '')
+      .replace(/\s+$/, '')
     ))
   }
   return data;
