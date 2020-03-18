@@ -25,7 +25,7 @@ const getData = async () => {
   ];
   for (const col of columns) {
     const rows = Array.from(col.querySelectorAll('td'));
-    data.push(rows.map(row => row.textContent))
+    data.push(rows.map(row => row.textContent.replace('.', '')))
   }
   return data;
 }
