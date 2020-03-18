@@ -20,12 +20,13 @@ const getData = async () => {
   const table = tables[0];
   const tableBody = table.querySelector('tbody');
   const columns = tableBody.querySelectorAll('tr');
+
   const data = [
     ['Landkreis/Kreisfreie Stadt', 'Bestätigte Fälle']
   ];
   for (const col of columns) {
     const rows = Array.from(col.querySelectorAll('td'));
-    data.push(rows.map(row => row.textContent))
+    data.push(rows.map(row => row.textContent.replace('(Kreis)', '')))
   }
   return data;
 }
