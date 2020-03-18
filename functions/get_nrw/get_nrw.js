@@ -1,9 +1,12 @@
 const fetch = require('node-fetch');
 const {
   JSDOM
-} = require('jsdom')
+} = require('jsdom');
 
 const stringify = require('csv-stringify/lib/sync');
+const moment = require('moment-timezone');
+
+const inhabitantsData = require('./inhabitants');
 
 const url = `https://www.mags.nrw/coronavirus-fallzahlen-nrw`
 
@@ -19,19 +22,26 @@ const getData = async () => {
   const tables = doc.window.document.getElementsByTagName('table');
   const table = tables[0];
   const tableBody = table.querySelector('tbody');
-  const columns = tableBody.querySelectorAll('tr');
+  const rows = tableBody.querySelectorAll('tr');
 
   const data = [
-    ['Landkreis/Kreisfreie Stadt', 'Bestätigte Fälle']
+    ['Landkreis/Kreisfreie Stadt', 'Bestätigte Fälle', 'Einwohner', 'Infizierte pro 100.000 Einwohner', 'Stand']
   ];
-  for (const col of columns) {
-    const rows = Array.from(col.querySelectorAll('td'));
-    data.push(rows.map(row => row.textContent
+  for (const row of rows) {
+    const columns = Array.from(row.querySelectorAll('td'));
+    const area = (
+      columns[0].textContent
       .replace('(Kreis)', '')
       .replace('Aachen & ', '')
+      .replace(/\s+$/, ''))
+    const infected = (
+      columns[1].textContent
       .replace('.', '')
-      .replace(/\s+$/, '')
-    ))
+    )
+    const inhabitants = inhabitantsData[area];
+    const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100
+    const day = moment.tz('Europe/Berlin').format('DD.MM.YYYY')
+    data.push([area, infected, inhabitants, infectedPer100K, day])
   }
   return data;
 }
