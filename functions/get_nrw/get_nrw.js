@@ -4,7 +4,7 @@ const {
 } = require('jsdom');
 
 const stringify = require('csv-stringify/lib/sync');
-const moment = require('moment-timezone');
+const moment = require('moment');
 
 const inhabitantsData = require('./inhabitants');
 
@@ -19,6 +19,23 @@ const getData = async () => {
   // Examine the text in the response
   const html = await resp.text();
   const doc = new JSDOM(html);
+
+  // Get date of last update from text
+  const textBlocks = doc.window.document.querySelectorAll('.field-item p');
+  let textDate;
+  for (const block of textBlocks) {
+    const match = block.textContent.match(/Aktueller Stand der Liste: (.*)\./);
+    if (match) {
+      textDate = match[1];
+      break;
+    }
+  }
+  if (!textDate) {
+    textDate = doc.window.document.querySelector('meta[name="dc.date.modified"]').content;
+    textDate = moment(textDate).format('DD.MM.YYYY');
+  }
+
+  // Get data table
   const tables = doc.window.document.getElementsByTagName('table');
   const table = tables[0];
   const tableBody = table.querySelector('tbody');
@@ -41,8 +58,7 @@ const getData = async () => {
     )
     const inhabitants = inhabitantsData[area];
     const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100
-    const day = moment.tz('Europe/Berlin').format('DD.MM.YYYY')
-    data.push([area, infected, inhabitants, infectedPer100K, day])
+    data.push([area, infected, inhabitants, infectedPer100K, textDate])
   }
   return data;
 }
@@ -50,7 +66,7 @@ const getData = async () => {
 // Look at the data
 exports.handler = async () => {
   const checkData = await getData();
-  console.log(checkData);
+  // console.log(checkData);
   return {
     statusCode: 200,
     headers: {
