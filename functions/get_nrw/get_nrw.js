@@ -51,14 +51,19 @@ const getData = async () => {
       .replace('(Kreis)', '')
       .replace('Aachen & ', '')
       .replace('Mülheim / Ruhr', 'Mülheim an der Ruhr')
-      .replace(/\s+$/, ''))
+      .replace(/\s+$/, ''));
+
+    if (area === 'Gesamt') {
+      continue;
+    }
+
     const infected = (
       columns[1].textContent
       .replace('.', '')
-    )
+    );
     const inhabitants = inhabitantsData[area];
-    const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100
-    data.push([area, infected, inhabitants, infectedPer100K, textDate])
+    const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100;
+    data.push([area, infected, inhabitants, infectedPer100K, textDate]);
   }
   return data;
 }
