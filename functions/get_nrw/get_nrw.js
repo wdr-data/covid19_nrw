@@ -50,7 +50,7 @@ const getData = async () => {
       columns[0].textContent
       .replace('(Kreis)', '')
       .replace('Aachen & ', '')
-      .replace('Mülheim / Ruhr', 'Mühlheim an der Ruhr')
+      .replace('Mülheim / Ruhr', 'Mülheim an der Ruhr')
       .replace(/\s+$/, ''))
     const infected = (
       columns[1].textContent
