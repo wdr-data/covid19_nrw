@@ -9,9 +9,9 @@ module.exports = {
         "Köln",
         "Leverkusen",
         "Oberbergischer Kreis",
-        "Rheinisch - Bergischer Kreis",
-        "Rhein - Erft - Kreis",
-        "Rhein - Sieg - Kreis",
+        "Rheinisch-Bergischer Kreis",
+        "Rhein-Erft-Kreis",
+        "Rhein-Sieg-Kreis",
     ],
     "muenster": [
         "Münster",
@@ -33,15 +33,15 @@ module.exports = {
     ],
     "wuppertal": [
         "Oberbergischer Kreis",
-        "Rheinisch - Bergischer Kreis",
+        "Rheinisch-Bergischer Kreis",
         "Remscheid",
         "Wuppertal",
-        "Ennepe - Ruhr - Kreis",
+        "Ennepe-Ruhr-Kreis",
         "Solingen",
         "Mettmann",
     ],
     "suedwestfalen": [
-        "Siegen - Wittgenstein",
+        "Siegen-Wittgenstein",
         "Hochsauerlandkreis",
         "Märkischer Kreis",
         "Olpe",
@@ -55,13 +55,13 @@ module.exports = {
     "bonn": [
         "Bonn",
         "Euskirchen",
-        "Rhein - Sieg - Kreis",
+        "Rhein-Sieg-Kreis",
     ],
     "duesseldorf": [
         "Düsseldorf",
         "Krefeld",
         "Mönchengladbach",
-        "Rhein - Kreis Neuss",
+        "Rhein-Kreis Neuss",
         "Viersen",
         "Mettmann",
     ],
@@ -70,7 +70,7 @@ module.exports = {
         "Hagen",
         "Hamm",
         "Unna",
-        "Ennepe - Ruhr - Kreis",
+        "Ennepe-Ruhr-Kreis",
         "Recklinghausen",
     ],
     "bielefeld": [
@@ -79,7 +79,7 @@ module.exports = {
         "Herford",
         "Höxter",
         "Lippe",
-        "Minden - Lübbecke",
+        "Minden-Lübbecke",
         "Paderborn",
     ]
 };
