@@ -79,7 +79,8 @@ const getData = async (params) => {
 exports.handler = async (event) => {
   console.log(JSON.stringify(event, null, 2));
 
-  const params = event.queryStringParameters || {};
+  //const params = event.queryStringParameters || {};
+  const params = {};  // disable filtering until caching problems are sorted out
   const checkData = await getData(params);
   // console.log(checkData);
   return {
