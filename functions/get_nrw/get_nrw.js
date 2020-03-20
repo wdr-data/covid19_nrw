@@ -7,10 +7,16 @@ const stringify = require('csv-stringify/lib/sync');
 const moment = require('moment');
 
 const inhabitantsData = require('./inhabitants');
+const studioData = require('./studios');
 
 const url = `https://www.mags.nrw/coronavirus-fallzahlen-nrw`
 
-const getData = async () => {
+const getData = async (params) => {
+  // Unpack GET params
+  const {
+    studio: studioFilter,
+  } = params;
+
   const resp = await fetch(url);
   if (!resp.ok) {
     console.log('Cannot fetch repo files:', resp.status, await resp.text());
@@ -53,7 +59,8 @@ const getData = async () => {
       .replace('Mülheim / Ruhr', 'Mülheim an der Ruhr')
       .replace(/\s+$/, ''));
 
-    if (area === 'Gesamt') {
+    // Skip area if it's not in our filter
+    if (area === 'Gesamt' || studioFilter && !studioData[studioFilter].includes(area)) {
       continue;
     }
 
@@ -69,8 +76,9 @@ const getData = async () => {
 }
 
 // Look at the data
-exports.handler = async () => {
-  const checkData = await getData();
+exports.handler = async (event) => {
+  const params = event.queryStringParameters || {};
+  const checkData = await getData(params);
   // console.log(checkData);
   return {
     statusCode: 200,
