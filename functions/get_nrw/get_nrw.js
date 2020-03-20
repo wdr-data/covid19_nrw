@@ -86,7 +86,7 @@ exports.handler = async (event) => {
     statusCode: 200,
     headers: {
       "content-type": "text/plain; charset=utf-8",
-      "cache-control": "max-age=3600"
+      "cache-control": "no-cache",
     },
     body: stringify(checkData, {
       header: false
