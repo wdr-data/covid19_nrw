@@ -77,6 +77,8 @@ const getData = async (params) => {
 
 // Look at the data
 exports.handler = async (event) => {
+  console.log(JSON.stringify(event, null, 2));
+
   const params = event.queryStringParameters || {};
   const checkData = await getData(params);
   // console.log(checkData);
