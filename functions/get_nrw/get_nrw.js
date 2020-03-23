@@ -30,7 +30,7 @@ const getData = async (params) => {
   const textBlocks = doc.window.document.querySelectorAll('.field-item p');
   let textDate;
   for (const block of textBlocks) {
-    const match = block.textContent.match(/Aktueller Stand der Liste: (.*)\./);
+    const match = block.textContent.match(/Aktueller Stand: (.*)\./);
     if (match) {
       textDate = match[1];
       break;
