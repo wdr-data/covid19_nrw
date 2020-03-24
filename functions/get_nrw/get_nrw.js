@@ -48,7 +48,7 @@ const getData = async (params) => {
   const rows = tableBody.querySelectorAll('tr');
 
   const data = [
-    ['Landkreis/Kreisfreie Stadt', 'Bestätigte Fälle', 'Einwohner', 'Infizierte pro 100.000 Einwohner', 'Stand']
+    ['Landkreis/ kreisfreie Stadt', 'Infizierte', 'Tote', 'Einwohner', 'Infizierte pro 100.000 Einwohner', 'Stand']
   ];
   for (const row of rows) {
     const columns = Array.from(row.querySelectorAll('td'));
@@ -68,9 +68,12 @@ const getData = async (params) => {
       columns[1].textContent
       .replace('.', '')
     );
+    const dead = (
+      columns[2].textContent
+    )
     const inhabitants = inhabitantsData[area];
     const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100;
-    data.push([area, infected, inhabitants, infectedPer100K, textDate]);
+    data.push([area, infected, dead, inhabitants, infectedPer100K, textDate]);
   }
   return data;
 }
