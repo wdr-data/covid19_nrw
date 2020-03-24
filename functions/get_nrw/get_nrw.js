@@ -70,9 +70,13 @@ const getData = async (params) => {
     );
     const dead = (
       columns[2].textContent
-    )
+      .trim()
+      .replace(',,', 0)
+    );
     const inhabitants = inhabitantsData[area];
+
     const infectedPer100K = Math.round(infected * 10000000 / inhabitants + Number.EPSILON) / 100;
+
     data.push([area, infected, dead, inhabitants, infectedPer100K, textDate]);
   }
   return data;
@@ -83,7 +87,7 @@ exports.handler = async (event) => {
   console.log(JSON.stringify(event, null, 2));
 
   //const params = event.queryStringParameters || {};
-  const params = {};  // disable filtering until caching problems are sorted out
+  const params = {}; // disable filtering until caching problems are sorted out
   const checkData = await getData(params);
   // console.log(checkData);
   return {
