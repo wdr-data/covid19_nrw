@@ -7,7 +7,7 @@
     "canvas": "^2.6.1",
     "csv-stringify": "^5.3.6",
     "jsdom": "^16.2.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "scripts": {
     "postinstall": "wget https://github.com/jwerre/node-canvas-lambda/raw/master/canvas-lib64-layer.zip && unzip -j -d canvas_lib64 canvas-lib64-layer.zip && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
