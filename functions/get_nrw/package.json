@@ -9,7 +9,7 @@
     "jsdom": "^16.2.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.7"
   },
   "scripts": {
     "postinstall": "wget https://github.com/jwerre/node-canvas-lambda/raw/master/canvas-lib64-layer.zip && unzip -j -d canvas_lib64 canvas-lib64-layer.zip && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
